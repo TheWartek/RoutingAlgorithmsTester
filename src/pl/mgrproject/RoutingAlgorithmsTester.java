@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 import pl.mgrproject.components.ChartPanel;
 import pl.mgrproject.components.GraphPanel;
+import pl.mgrproject.plugins.PluginManager;
 
 public class RoutingAlgorithmsTester extends JFrame {
     
@@ -25,8 +27,10 @@ public class RoutingAlgorithmsTester extends JFrame {
     private JPanel chart = new ChartPanel();
     private JList generatorsList;
     private JList routingAlgorithmsList;
+    private PluginManager pm;
 
     public RoutingAlgorithmsTester() {
+	pm = new PluginManager();
 	initComponents();
     }
     
@@ -49,7 +53,8 @@ public class RoutingAlgorithmsTester extends JFrame {
 	leftBar.setBorder(BorderFactory.createEtchedBorder());
 	
 	//graph generator choice
-	String[] generators = new String[] {"Generator1", "Generator2", "Generator3", "Generator4", "Generator5", "Generator6",};
+	List<String> pluginNames = pm.getPluginNames();
+	String[] generators = pluginNames.toArray(new String[pluginNames.size()]);
 	generatorsList = new JList(generators);
 	generatorsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	JScrollPane scroll = new JScrollPane(generatorsList);

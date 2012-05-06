@@ -53,8 +53,8 @@ public class RoutingAlgorithmsTester extends JFrame {
 	leftBar.setBorder(BorderFactory.createEtchedBorder());
 	
 	//graph generator choice
-	List<String> pluginNames = pm.getPluginNames();
-	String[] generators = pluginNames.toArray(new String[pluginNames.size()]);
+	List<String> generatorNames = pm.getGeneratorNames();
+	String[] generators = generatorNames.toArray(new String[generatorNames.size()]);
 	generatorsList = new JList(generators);
 	generatorsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	JScrollPane scroll = new JScrollPane(generatorsList);
@@ -67,7 +67,8 @@ public class RoutingAlgorithmsTester extends JFrame {
 	//***//
 	
 	//routing algorithm choice
-	String[] routingAlgorithms = new String[] {"Algorytm1", "Algorytm2", "Algorytm3", "Algorytm4", "Algorytm5", "Algorytm6",};
+	List<String> routingAlgorithmNames = pm.getRoutingAlgorithmNames();
+	String[] routingAlgorithms = routingAlgorithmNames.toArray(new String[routingAlgorithmNames.size()]);
 	routingAlgorithmsList = new JList(routingAlgorithms);
 	routingAlgorithmsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	scroll = new JScrollPane(routingAlgorithmsList);

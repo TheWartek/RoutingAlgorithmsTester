@@ -13,15 +13,24 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 public class PluginManager {
-    private List<Plugin> plugins = new ArrayList<Plugin>();
+    private List<Plugin> generators = new ArrayList<Plugin>();
+    private List<Plugin> routingAlgorithms = new ArrayList<Plugin>();
 
     public PluginManager() {
 	findAndInstantiatePlugins();
     }
 
-    public List<String> getPluginNames() {
+    public List<String> getGeneratorNames() {
 	List<String> pluginNames = new ArrayList<String>();
-	for (Plugin p : plugins) {
+	for (Plugin p : generators) {
+	    pluginNames.add(p.getName());
+	}
+	return pluginNames;
+    }
+    
+    public List<String> getRoutingAlgorithmNames() {
+	List<String> pluginNames = new ArrayList<String>();
+	for (Plugin p : routingAlgorithms) {
 	    pluginNames.add(p.getName());
 	}
 	return pluginNames;
@@ -43,7 +52,15 @@ public class PluginManager {
 
 	// opening JAR files and instantiating plugins
 	for (File f : listOfFiles) {
-	    plugins.add(getPluginInstance(f));
+	    Plugin p = getPluginInstance(f);
+	    if (p == null) {
+		continue;
+	    }
+	    if (p instanceof Generator) {
+		generators.add(p);
+	    } else if (p instanceof RoutingAlgorithm) {
+		routingAlgorithms.add(p);
+	    }
 	}
 	// ***//
     }

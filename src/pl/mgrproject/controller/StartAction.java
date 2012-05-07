@@ -30,7 +30,7 @@ public class StartAction implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 	String genStr = (String)generators.getSelectedValue();
 	Generator generator = Environment.getPluginManager().getGenerator(genStr);
-	Graph g = generator.getGraph(10);
+	Graph<?> g = generator.getGraph(10);
 	//graph.draw(g);
     }
 

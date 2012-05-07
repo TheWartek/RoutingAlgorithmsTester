@@ -28,10 +28,8 @@ public class RoutingAlgorithmsTester extends JFrame {
     private JPanel chart = new ChartPanel();
     private JList generatorsList;
     private JList routingAlgorithmsList;
-    private PluginManager pm;
 
     public RoutingAlgorithmsTester() {
-	pm = new PluginManager();
 	initComponents();
     }
     
@@ -54,7 +52,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	leftBar.setBorder(BorderFactory.createEtchedBorder());
 	
 	//graph generator choice
-	List<String> generatorNames = pm.getGeneratorNames();
+	List<String> generatorNames = Environment.getPluginManager().getGeneratorNames();
 	String[] generators = generatorNames.toArray(new String[generatorNames.size()]);
 	generatorsList = new JList(generators);
 	generatorsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -68,7 +66,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	//***//
 	
 	//routing algorithm choice
-	List<String> routingAlgorithmNames = pm.getRoutingAlgorithmNames();
+	List<String> routingAlgorithmNames = Environment.getPluginManager().getRoutingAlgorithmNames();
 	String[] routingAlgorithms = routingAlgorithmNames.toArray(new String[routingAlgorithmNames.size()]);
 	routingAlgorithmsList = new JList(routingAlgorithms);
 	routingAlgorithmsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

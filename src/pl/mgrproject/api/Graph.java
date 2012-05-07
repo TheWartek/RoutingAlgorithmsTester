@@ -1,5 +1,6 @@
 package pl.mgrproject.api;
 
+
 public class Graph<T> {
     private T graph;
     

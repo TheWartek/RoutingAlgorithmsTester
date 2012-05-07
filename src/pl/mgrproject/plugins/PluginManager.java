@@ -13,8 +13,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 public class PluginManager {
-    private List<Plugin> generators = new ArrayList<Plugin>();
-    private List<Plugin> routingAlgorithms = new ArrayList<Plugin>();
+    private List<Generator> generators = new ArrayList<Generator>();
+    private List<RoutingAlgorithm> routingAlgorithms = new ArrayList<RoutingAlgorithm>();
 
     public PluginManager() {
 	findAndInstantiatePlugins();
@@ -34,6 +34,32 @@ public class PluginManager {
 	    pluginNames.add(p.getName());
 	}
 	return pluginNames;
+    }
+    
+    public List<Generator> getGenerators() {
+	return generators;
+    }
+    
+    public Generator getGenerator(String name) {
+	for (Generator g : generators) {
+	    if (g.getName().equals(name)) {
+		return g;
+	    }
+	}
+	return null;
+    }
+    
+    public List<RoutingAlgorithm> getRoutingAlgorithms() {
+	return routingAlgorithms;
+    }
+    
+    public RoutingAlgorithm getRoutingAlgorithm(String name) {
+	for (RoutingAlgorithm r : routingAlgorithms) {
+	    if (r.getName().equals(name)) {
+		return r;
+	    }
+	}
+	return null;
     }
 
     private void findAndInstantiatePlugins() {
@@ -57,9 +83,9 @@ public class PluginManager {
 		continue;
 	    }
 	    if (p instanceof Generator) {
-		generators.add(p);
+		generators.add((Generator)p);
 	    } else if (p instanceof RoutingAlgorithm) {
-		routingAlgorithms.add(p);
+		routingAlgorithms.add((RoutingAlgorithm)p);
 	    }
 	}
 	// ***//

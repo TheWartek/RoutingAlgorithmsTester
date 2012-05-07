@@ -1,14 +1,19 @@
 package pl.mgrproject.api;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Graph<T> {
-    private T graph;
+    private List<Point> vertices = new ArrayList<Point>();
+    private List<Edge<T>> edges = new ArrayList<Edge<T>>();
     
-    public T getGraph() {
-	return graph;
+    public List<Point> getVertices() {
+	return vertices;
     }
     
-    public void setGraph(T graph) {
-	this.graph = graph;
+    public List<Edge<T>> getEdges() {
+	return edges;
     }
 }

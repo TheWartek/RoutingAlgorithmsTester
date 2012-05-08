@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -31,12 +32,17 @@ public class StartAction implements ActionListener {
 	Environment.startTest();
 	String genStr = (String) generators.getSelectedValue();
 	final Generator generator = Environment.getPluginManager().getGenerator(genStr);
-
+	
+	if (generator == null) {
+	    JOptionPane.showMessageDialog(null, "Nie wybrano generatora grafu!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+	    return;
+	}
+	
 	ExecutorService exec = Executors.newFixedThreadPool(1);
 	exec.execute(new Runnable() {
 	    @Override
 	    public void run() {
-		for (int i = 1; i < 100; ++i) {
+		for (int i = 1; i < 2; ++i) {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }

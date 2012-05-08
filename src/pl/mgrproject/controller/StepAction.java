@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import pl.mgrproject.Environment;
 import pl.mgrproject.plugins.Generator;
@@ -22,6 +23,11 @@ public class StepAction implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 	String genStr = (String) generators.getSelectedValue();
 	final Generator generator = Environment.getPluginManager().getGenerator(genStr);
+	
+	if (generator == null) {
+	    JOptionPane.showMessageDialog(null, "Nie wybrano generatora grafu!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+	    return;
+	}
 	
 	Environment.drawStep(generator);
     }

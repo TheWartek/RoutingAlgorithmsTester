@@ -13,7 +13,7 @@ public class Environment {
     private static boolean stop;
     private static GraphPanel graph;
     private static ChartPanel chart;
-    private static int nVert = 0;
+    private static int nVert = 1;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
@@ -61,6 +61,6 @@ public class Environment {
     }
     
     public static void drawStep(Generator gen) {
-	drawGraph(gen, nVert++);
+	drawGraph(gen, ++nVert);
     }
 }

@@ -1,28 +1,66 @@
 package pl.mgrproject;
 
+import javax.swing.SwingUtilities;
+
+import pl.mgrproject.api.Graph;
+import pl.mgrproject.components.ChartPanel;
+import pl.mgrproject.components.GraphPanel;
+import pl.mgrproject.plugins.Generator;
 import pl.mgrproject.plugins.PluginManager;
 
 public class Environment {
     private static PluginManager pluginManager;
     private static boolean stop;
-    
+    private static GraphPanel graph;
+    private static ChartPanel chart;
+    private static int nVert;
+
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {
 	    pluginManager = new PluginManager();
 	}
-	
+
 	return pluginManager;
     }
-    
+
     public static void stopTest() {
 	stop = true;
     }
-    
+
     public static void startTest() {
 	stop = false;
     }
-    
+
     public static boolean testIsStopped() {
 	return stop;
+    }
+
+    public static GraphPanel getGraphPanel() {
+	if (graph == null) {
+	    graph = new GraphPanel();
+	}
+	return graph;
+    }
+
+    public static ChartPanel getChartPanel() {
+	if (chart == null) {
+	    chart = new ChartPanel();
+	}
+	return chart;
+    }
+
+    public static void drawGraph(Generator gen, int vertices) {
+	nVert = vertices;
+	final Graph<?> g = gen.getGraph(vertices);
+	SwingUtilities.invokeLater(new Runnable() {
+	    @Override
+	    public void run() {
+		graph.draw(g);
+	    }
+	});
+    }
+    
+    public static void drawStep(Generator gen) {
+	drawGraph(gen, nVert++);
     }
 }

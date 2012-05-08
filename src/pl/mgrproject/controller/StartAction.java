@@ -18,14 +18,10 @@ import pl.mgrproject.plugins.Generator;
 
 public class StartAction implements ActionListener {
 
-    private GraphPanel graph;
-    private ChartPanel chart;
     private JList generators;
     private JList algorithms;
 
-    public StartAction(JPanel graph, JPanel chart, JList generators, JList algorithms) {
-	this.graph = (GraphPanel) graph;
-	this.chart = (ChartPanel) chart;
+    public StartAction(JList generators, JList algorithms) {
 	this.generators = generators;
 	this.algorithms = algorithms;
     }
@@ -44,13 +40,7 @@ public class StartAction implements ActionListener {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }
-		    final Graph<?> g = generator.getGraph(i);
-		    SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-			    graph.draw(g);
-			}
-		    });
+		    Environment.drawGraph(generator, i);
 		}
 	    }
 	});

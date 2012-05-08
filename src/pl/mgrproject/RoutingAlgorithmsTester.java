@@ -16,16 +16,12 @@ import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
-import pl.mgrproject.components.ChartPanel;
-import pl.mgrproject.components.GraphPanel;
 import pl.mgrproject.controller.StartAction;
 import pl.mgrproject.controller.StopAction;
 
 public class RoutingAlgorithmsTester extends JFrame {
     
     private static final long serialVersionUID = -9006966197122760691L;
-    private JPanel graph = new GraphPanel();
-    private JPanel chart = new ChartPanel();
     private JList generatorsList;
     private JList routingAlgorithmsList;
 
@@ -38,7 +34,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	add(BorderLayout.WEST, leftBar());
 	JPanel main = new JPanel();
 	main.setLayout(new BorderLayout());
-	JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, graph, chart);
+	JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, Environment.getGraphPanel(), Environment.getChartPanel());
 	split.setOneTouchExpandable(true);
 	split.setDividerLocation(Toolkit.getDefaultToolkit().getScreenSize().height / 2);
 	main.add(split);
@@ -81,7 +77,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	
 	//start button//
 	JButton start = new JButton("Start");
-	start.addActionListener(new StartAction(graph, chart, generatorsList, routingAlgorithmsList));
+	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList));
 	leftBar.add(start);
 	//***//
 	

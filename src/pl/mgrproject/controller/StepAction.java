@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import pl.mgrproject.api.Environment;
+import pl.mgrproject.Environment;
 import pl.mgrproject.api.plugins.Generator;
 
 public class StepAction implements ActionListener {

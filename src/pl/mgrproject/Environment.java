@@ -1,7 +1,8 @@
-package pl.mgrproject.api;
+package pl.mgrproject;
 
 import javax.swing.SwingUtilities;
 
+import pl.mgrproject.api.Graph;
 import pl.mgrproject.api.plugins.Generator;
 import pl.mgrproject.api.plugins.PluginManager;
 import pl.mgrproject.components.ChartPanel;

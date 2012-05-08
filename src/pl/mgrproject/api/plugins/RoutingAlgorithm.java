@@ -1,4 +1,4 @@
-package pl.mgrproject.plugins;
+package pl.mgrproject.api.plugins;
 
 import java.awt.Point;
 import java.util.List;

@@ -1,12 +1,11 @@
-package pl.mgrproject;
+package pl.mgrproject.api;
 
 import javax.swing.SwingUtilities;
 
-import pl.mgrproject.api.Graph;
+import pl.mgrproject.api.plugins.Generator;
+import pl.mgrproject.api.plugins.PluginManager;
 import pl.mgrproject.components.ChartPanel;
 import pl.mgrproject.components.GraphPanel;
-import pl.mgrproject.plugins.Generator;
-import pl.mgrproject.plugins.PluginManager;
 
 public class Environment {
     private static PluginManager pluginManager;

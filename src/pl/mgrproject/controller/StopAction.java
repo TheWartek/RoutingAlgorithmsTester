@@ -3,7 +3,7 @@ package pl.mgrproject.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import pl.mgrproject.Environment;
+import pl.mgrproject.api.Environment;
 
 public class StopAction implements ActionListener {
 

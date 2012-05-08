@@ -4,18 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import pl.mgrproject.Environment;
-import pl.mgrproject.api.Graph;
-import pl.mgrproject.components.ChartPanel;
-import pl.mgrproject.components.GraphPanel;
-import pl.mgrproject.plugins.Generator;
+import pl.mgrproject.api.Environment;
+import pl.mgrproject.api.plugins.Generator;
 
 public class StartAction implements ActionListener {
 

@@ -51,11 +51,6 @@ public class StartAction implements ActionListener {
 			    graph.draw(g);
 			}
 		    });
-		    try {
-			TimeUnit.MILLISECONDS.sleep(100);
-		    } catch (InterruptedException e) {
-			e.printStackTrace();
-		    }
 		}
 	    }
 	});

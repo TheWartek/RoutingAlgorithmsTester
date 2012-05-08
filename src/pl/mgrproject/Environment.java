@@ -13,7 +13,7 @@ public class Environment {
     private static boolean stop;
     private static GraphPanel graph;
     private static ChartPanel chart;
-    private static int nVert;
+    private static int nVert = 0;
 
     public static PluginManager getPluginManager() {
 	if (pluginManager == null) {

@@ -17,6 +17,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
 import pl.mgrproject.controller.StartAction;
+import pl.mgrproject.controller.StepAction;
 import pl.mgrproject.controller.StopAction;
 
 public class RoutingAlgorithmsTester extends JFrame {
@@ -85,6 +86,12 @@ public class RoutingAlgorithmsTester extends JFrame {
 	JButton stop = new JButton("Stop");
 	stop.addActionListener(new StopAction());
 	leftBar.add(stop);
+	//***//
+	
+	//step button//
+	JButton step = new JButton("Krok");
+	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList));
+	leftBar.add(step);
 	//***//
 	
 	return leftBar;

@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import pl.mgrproject.components.ChartPanel;
 import pl.mgrproject.components.GraphPanel;
 import pl.mgrproject.controller.StartAction;
+import pl.mgrproject.controller.StopAction;
 
 public class RoutingAlgorithmsTester extends JFrame {
     
@@ -82,6 +83,12 @@ public class RoutingAlgorithmsTester extends JFrame {
 	JButton start = new JButton("Start");
 	start.addActionListener(new StartAction(graph, chart, generatorsList, routingAlgorithmsList));
 	leftBar.add(start);
+	//***//
+	
+	//stop button//
+	JButton stop = new JButton("Stop");
+	stop.addActionListener(new StopAction());
+	leftBar.add(stop);
 	//***//
 	
 	return leftBar;

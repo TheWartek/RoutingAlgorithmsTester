@@ -32,6 +32,7 @@ public class StartAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+	Environment.startTest();
 	String genStr = (String) generators.getSelectedValue();
 	final Generator generator = Environment.getPluginManager().getGenerator(genStr);
 
@@ -40,6 +41,9 @@ public class StartAction implements ActionListener {
 	    @Override
 	    public void run() {
 		for (int i = 1; i < 100; ++i) {
+		    if (Environment.testIsStopped()) {
+			break;
+		    }
 		    final Graph<?> g = generator.getGraph(i);
 		    SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -47,7 +51,6 @@ public class StartAction implements ActionListener {
 			    graph.draw(g);
 			}
 		    });
-		    System.out.println(i);
 		    try {
 			TimeUnit.MILLISECONDS.sleep(100);
 		    } catch (InterruptedException e) {
@@ -56,6 +59,7 @@ public class StartAction implements ActionListener {
 		}
 	    }
 	});
+	exec.shutdown();
     }
 
 }

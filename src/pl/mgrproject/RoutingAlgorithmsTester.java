@@ -16,6 +16,7 @@ import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
+import pl.mgrproject.api.Environment;
 import pl.mgrproject.controller.StartAction;
 import pl.mgrproject.controller.StepAction;
 import pl.mgrproject.controller.StopAction;

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import pl.mgrproject.api.Environment;
 import pl.mgrproject.api.plugins.Generator;
+import pl.mgrproject.api.plugins.RoutingAlgorithm;
 
 public class StartAction implements ActionListener {
 
@@ -25,10 +26,17 @@ public class StartAction implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 	Environment.startTest();
 	String genStr = (String) generators.getSelectedValue();
+	String algStr = (String) algorithms.getSelectedValue();
 	final Generator generator = Environment.getPluginManager().getGenerator(genStr);
+	final RoutingAlgorithm algorithm = Environment.getPluginManager().getRoutingAlgorithm(algStr);
 	
 	if (generator == null) {
 	    JOptionPane.showMessageDialog(null, "Nie wybrano generatora grafu!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+	    return;
+	}
+	
+	if (algorithm == null) {
+	    JOptionPane.showMessageDialog(null, "Nie wybrano algorytmu routingu!", "B³¹d", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
 	
@@ -41,6 +49,7 @@ public class StartAction implements ActionListener {
 			break;
 		    }
 		    Environment.drawGraph(generator, i);
+		    algorithm.setGraph(generator.getGraph());
 		}
 	    }
 	});

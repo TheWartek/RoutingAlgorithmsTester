@@ -64,13 +64,14 @@ public class RoutingAlgorithmsTester extends JFrame {
 	//***//
 	
 	//routing algorithm choice
+	JPanel algPanel = new JPanel();
 	List<String> routingAlgorithmNames = Environment.getPluginManager().getRoutingAlgorithmNames();
 	String[] routingAlgorithms = routingAlgorithmNames.toArray(new String[routingAlgorithmNames.size()]);
 	routingAlgorithmsList = new JList(routingAlgorithms);
 	routingAlgorithmsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	scroll = new JScrollPane(routingAlgorithmsList);
 	scroll.setPreferredSize(new Dimension(150, 75));
-	JPanel algPanel = new JPanel();
+	
 	algPanel.setLayout(new FlowLayout());
 	algPanel.setBorder(BorderFactory.createTitledBorder("Algorytmy routingu"));
 	algPanel.add(scroll);
@@ -107,6 +108,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		f.setMinimumSize(new Dimension(800, 600));
 	    }
 	});
     }

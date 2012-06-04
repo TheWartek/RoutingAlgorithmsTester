@@ -1,12 +1,16 @@
 package pl.mgrproject.controller;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Random;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import pl.mgrproject.api.Environment;
+import pl.mgrproject.api.Graph;
 import pl.mgrproject.api.plugins.Generator;
 import pl.mgrproject.api.plugins.RoutingAlgorithm;
 
@@ -38,7 +42,17 @@ public class StepAction implements ActionListener {
 	}
 	
 	Environment.drawStep(generator);
-	algorithm.setGraph(generator.getGraph());
+	Graph<?> g = generator.getGraph();
+	int n = g.getVertices().size();
+	algorithm.setGraph(g);
+	Random rand = new Random();
+	int start = rand.nextInt(n);
+	int stop;
+	do {
+	    stop = rand.nextInt(n);
+	} while (stop == start);
+	algorithm.run(start);
+	List<Point> path = algorithm.getPath(stop);
     }
 
 }

@@ -13,6 +13,7 @@ import pl.mgrproject.api.Environment;
 import pl.mgrproject.api.Graph;
 import pl.mgrproject.api.plugins.Generator;
 import pl.mgrproject.api.plugins.RoutingAlgorithm;
+import pl.mgrproject.components.GraphPanel;
 
 public class StepAction implements ActionListener {
     
@@ -53,6 +54,9 @@ public class StepAction implements ActionListener {
 	} while (stop == start);
 	algorithm.run(start);
 	List<Point> path = algorithm.getPath(stop);
+	Environment.setPath(path);
+	GraphPanel gp = Environment.getGraphPanel();
+	gp.draw(g);
     }
 
 }

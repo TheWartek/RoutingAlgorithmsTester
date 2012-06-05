@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -75,9 +76,9 @@ public class StepAction implements ActionListener {
 	}
 	algorithm.run(start);
 	List<Point> path = algorithm.getPath(stop);
-	//Environment.setPath(path);
+	Environment.setPath(path);
 	GraphPanel gp = Environment.getGraphPanel();
-	//gp.draw(g);
+	gp.draw(g);
     }
 
 }

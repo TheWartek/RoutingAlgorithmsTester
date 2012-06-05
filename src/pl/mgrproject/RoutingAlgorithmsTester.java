@@ -9,10 +9,12 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
@@ -78,6 +80,13 @@ public class RoutingAlgorithmsTester extends JFrame {
 	leftBar.add(algPanel);
 	//***//
 	
+	JTextField startVertex = new JTextField("-", 3);
+	JTextField stopVertex  = new JTextField("-", 3);
+	leftBar.add(new JLabel("Start:"));
+	leftBar.add(startVertex);
+	leftBar.add(new JLabel("Stop:"));
+	leftBar.add(stopVertex);
+	
 	//start button//
 	JButton start = new JButton("Start");
 	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList));
@@ -92,7 +101,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	
 	//step button//
 	JButton step = new JButton("Krok");
-	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList));
+	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex));
 	leftBar.add(step);
 	//***//
 	

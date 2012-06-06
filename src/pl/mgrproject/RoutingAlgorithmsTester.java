@@ -89,7 +89,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	
 	//start button//
 	JButton start = new JButton("Start");
-	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList));
+	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex));
 	leftBar.add(start);
 	//***//
 	

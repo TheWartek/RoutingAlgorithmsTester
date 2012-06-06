@@ -86,7 +86,8 @@ public class StepAction implements ActionListener {
 		test = true;
 	    } catch (Exception e) {
 		generator.generate(step);
-		algorithm.setGraph(generator.getGraph());
+		g = generator.getGraph();
+		algorithm.setGraph(g);
 	    }
 	} while(!test);
 	

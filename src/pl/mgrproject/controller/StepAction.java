@@ -14,7 +14,6 @@ import pl.mgrproject.api.Environment;
 import pl.mgrproject.api.Graph;
 import pl.mgrproject.api.plugins.Generator;
 import pl.mgrproject.api.plugins.RoutingAlgorithm;
-import pl.mgrproject.components.GraphPanel;
 
 public class StepAction implements ActionListener {
 
@@ -48,7 +47,7 @@ public class StepAction implements ActionListener {
 	    return;
 	}
 	
-	generator.generate(step++);
+	generator.generate(step);
 	Graph<?> g = generator.getGraph();
 	algorithm.setGraph(g);
 
@@ -74,10 +73,25 @@ public class StepAction implements ActionListener {
 		stop = rand.nextInt(n);
 	    } while (stop == start);
 	}
-	algorithm.run(start);
+	
+	//jesli graf okaze sie niespojny
+	//to zostanie podjeta proba
+	//ponownego wygenerowania grafu
+	test = false;
+	do {
+	    try {
+		algorithm.run(start);
+		test = true;
+	    } catch (Exception e) {
+		generator.generate(step);
+		algorithm.setGraph(generator.getGraph());
+	    }
+	} while(!test);
+	
 	List<Point> path = algorithm.getPath(stop);
 	Environment.setPath(path);
 	Environment.drawGraph(g);
+	++step;
     }
 
 }

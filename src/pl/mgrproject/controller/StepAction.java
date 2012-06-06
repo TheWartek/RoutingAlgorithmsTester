@@ -81,6 +81,8 @@ public class StepAction implements ActionListener {
 	do {
 	    try {
 		algorithm.run(start);
+		List<Point> path = algorithm.getPath(stop);
+		Environment.setPath(path);
 		test = true;
 	    } catch (Exception e) {
 		generator.generate(step);
@@ -88,8 +90,6 @@ public class StepAction implements ActionListener {
 	    }
 	} while(!test);
 	
-	List<Point> path = algorithm.getPath(stop);
-	Environment.setPath(path);
 	Environment.drawGraph(g);
 	++step;
     }

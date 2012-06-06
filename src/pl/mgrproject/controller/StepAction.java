@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ public class StepAction implements ActionListener {
     private JList algorithms;
     private JTextField startVertex;
     private JTextField stopVertex;
+    private int step = 2;
 
     public StepAction(JList generators, JList algorithms, JTextField start, JTextField stop) {
 	this.generators = generators;
@@ -47,14 +47,14 @@ public class StepAction implements ActionListener {
 	    JOptionPane.showMessageDialog(null, "Nie wybrano algorytmu routingu!", "B³¹d", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
-
-	Environment.drawStep(generator);
+	
+	generator.generate(step++);
 	Graph<?> g = generator.getGraph();
-	int n = g.getVertices().size();
 	algorithm.setGraph(g);
 
 	int start = -1;
 	int stop = -1;
+	int n = g.getVertices().size();
 	boolean test = true;
 	try {
 	    start = Integer.parseInt(startVertex.getText());
@@ -77,8 +77,7 @@ public class StepAction implements ActionListener {
 	algorithm.run(start);
 	List<Point> path = algorithm.getPath(stop);
 	Environment.setPath(path);
-	GraphPanel gp = Environment.getGraphPanel();
-	gp.draw(g);
+	Environment.drawGraph(g);
     }
 
 }

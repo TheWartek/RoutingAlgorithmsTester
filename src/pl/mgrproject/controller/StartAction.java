@@ -48,7 +48,8 @@ public class StartAction implements ActionListener {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }
-		    Environment.drawGraph(generator, i);
+		    generator.generate(i);
+		    Environment.drawGraph(generator.getGraph());
 		    algorithm.setGraph(generator.getGraph());
 		}
 	    }

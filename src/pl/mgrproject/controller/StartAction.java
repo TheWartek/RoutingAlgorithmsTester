@@ -78,10 +78,14 @@ public class StartAction implements ActionListener {
 		    // jesli graf okaze sie niespojny
 		    // to zostanie podjeta proba
 		    // ponownego wygenerowania grafu
+		    long startTime = 0;
+		    long stopTime = 0;
 		    boolean test = false;
 		    do {
 			try {
+			    startTime = System.currentTimeMillis();
 			    algorithm.run(start);
+			    stopTime = System.currentTimeMillis();
 			    List<Point> path = algorithm.getPath(stop);
 			    Environment.setPath(path);
 			    test = true;
@@ -92,7 +96,9 @@ public class StartAction implements ActionListener {
 			}
 		    } while (!test);
 
+		    Environment.addTime(stopTime - startTime);
 		    Environment.drawGraph(g);
+		    Environment.drawChart();
 		}
 	    }
 	});

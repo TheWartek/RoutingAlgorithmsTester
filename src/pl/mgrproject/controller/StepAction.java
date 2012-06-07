@@ -78,9 +78,13 @@ public class StepAction implements ActionListener {
 	//to zostanie podjeta proba
 	//ponownego wygenerowania grafu
 	test = false;
+	long startTime = 0;
+	long stopTime = 0;
 	do {
 	    try {
+		startTime = System.currentTimeMillis();
 		algorithm.run(start);
+		stopTime = System.currentTimeMillis();
 		List<Point> path = algorithm.getPath(stop);
 		Environment.setPath(path);
 		test = true;
@@ -91,7 +95,9 @@ public class StepAction implements ActionListener {
 	    }
 	} while(!test);
 	
+	Environment.addTime(stopTime - startTime);
 	Environment.drawGraph(g);
+	Environment.drawChart();
 	++step;
     }
 

@@ -21,14 +21,12 @@ public class StartAction implements ActionListener {
 
     private JList generators;
     private JList algorithms;
-    private JTextField startVertex;
-    private JTextField stopVertex;
+    private JTextField it;
 
-    public StartAction(JList generators, JList algorithms, JTextField start, JTextField stop) {
+    public StartAction(JList generators, JList algorithms, JTextField iterations) {
 	this.generators = generators;
 	this.algorithms = algorithms;
-	this.startVertex = start;
-	this.stopVertex = stop;
+	it = iterations;
     }
 
     @Override
@@ -53,7 +51,13 @@ public class StartAction implements ActionListener {
 	exec.execute(new Runnable() {
 	    @Override
 	    public void run() {
-		for (int i = 2; i < 100; ++i) {
+		int iter = 0;
+		try {
+		    iter = Integer.parseInt(it.getText());
+		} catch(NumberFormatException e) {
+		    iter = -1;
+		}
+		for (int i = 2; iter <= 0 ? true : i < iter; ++i) {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }

@@ -82,14 +82,17 @@ public class RoutingAlgorithmsTester extends JFrame {
 	
 	JTextField startVertex = new JTextField("-", 3);
 	JTextField stopVertex  = new JTextField("-", 3);
+	JTextField iteracje    = new JTextField("-", 9);
 	leftBar.add(new JLabel("Start:"));
 	leftBar.add(startVertex);
 	leftBar.add(new JLabel("Stop:"));
 	leftBar.add(stopVertex);
+	leftBar.add(new JLabel("Iteracje:"));
+	leftBar.add(iteracje);
 	
 	//start button//
 	JButton start = new JButton("Start");
-	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex));
+	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList, iteracje));
 	leftBar.add(start);
 	//***//
 	

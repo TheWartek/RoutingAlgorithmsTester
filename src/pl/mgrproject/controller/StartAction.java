@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -22,11 +23,13 @@ public class StartAction implements ActionListener {
     private JList generators;
     private JList algorithms;
     private JTextField it;
+    private JCheckBox drawGraph;
 
-    public StartAction(JList generators, JList algorithms, JTextField iterations) {
+    public StartAction(JList generators, JList algorithms, JTextField iterations, JCheckBox drawGraph) {
 	this.generators = generators;
 	this.algorithms = algorithms;
 	it = iterations;
+	this.drawGraph = drawGraph;
     }
 
     @Override
@@ -97,7 +100,9 @@ public class StartAction implements ActionListener {
 		    } while (!test);
 
 		    Environment.addTime(stopTime - startTime);
-		    Environment.drawGraph(g);
+		    if (drawGraph.isSelected()) {
+			    Environment.drawGraph(g);
+			}
 		    Environment.drawChart();
 		}
 	    }

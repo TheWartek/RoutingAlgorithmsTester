@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -21,13 +22,15 @@ public class StepAction implements ActionListener {
     private JList algorithms;
     private JTextField startVertex;
     private JTextField stopVertex;
+    private JCheckBox drawGraph;
     private int step = 2;
 
-    public StepAction(JList generators, JList algorithms, JTextField start, JTextField stop) {
+    public StepAction(JList generators, JList algorithms, JTextField start, JTextField stop, JCheckBox drawGraph) {
 	this.generators = generators;
 	this.algorithms = algorithms;
 	this.startVertex = start;
 	this.stopVertex = stop;
+	this.drawGraph = drawGraph;
     }
 
     @Override
@@ -96,7 +99,9 @@ public class StepAction implements ActionListener {
 	} while(!test);
 	
 	Environment.addTime(stopTime - startTime);
-	Environment.drawGraph(g);
+	if (drawGraph.isSelected()) {
+	    Environment.drawGraph(g);
+	}
 	Environment.drawChart();
 	++step;
     }

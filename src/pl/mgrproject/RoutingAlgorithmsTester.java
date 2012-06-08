@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -83,16 +84,19 @@ public class RoutingAlgorithmsTester extends JFrame {
 	JTextField startVertex = new JTextField("-", 3);
 	JTextField stopVertex  = new JTextField("-", 3);
 	JTextField iteracje    = new JTextField("-", 9);
+	JCheckBox drawGraph    = new JCheckBox();
 	leftBar.add(new JLabel("Start:"));
 	leftBar.add(startVertex);
 	leftBar.add(new JLabel("Stop:"));
 	leftBar.add(stopVertex);
 	leftBar.add(new JLabel("Iteracje:"));
 	leftBar.add(iteracje);
+	leftBar.add(new JLabel("Rysuj graf:"));
+	leftBar.add(drawGraph);
 	
 	//start button//
 	JButton start = new JButton("Start");
-	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList, iteracje));
+	start.addActionListener(new StartAction(generatorsList, routingAlgorithmsList, iteracje, drawGraph));
 	leftBar.add(start);
 	//***//
 	
@@ -104,7 +108,7 @@ public class RoutingAlgorithmsTester extends JFrame {
 	
 	//step button//
 	JButton step = new JButton("Krok");
-	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex));
+	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex, drawGraph));
 	leftBar.add(step);
 	//***//
 	

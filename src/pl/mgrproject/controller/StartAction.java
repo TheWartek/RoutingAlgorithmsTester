@@ -34,6 +34,7 @@ public class StartAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+	Environment.resetTimes();
 	Environment.startTest();
 	String genStr = (String) generators.getSelectedValue();
 	String algStr = (String) algorithms.getSelectedValue();

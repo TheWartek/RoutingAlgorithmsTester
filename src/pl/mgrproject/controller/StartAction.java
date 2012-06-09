@@ -34,6 +34,9 @@ public class StartAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+	if (!Environment.testIsStopped() && !Environment.testIsPaused()) {
+	    return;
+	}
 	if (!Environment.testIsPaused()) {
 	    Environment.resetTimes();
 	} else {

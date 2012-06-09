@@ -9,10 +9,9 @@ public class ResetAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	if (Environment.testIsPaused()) {
-	    Environment.setIterationNumber(2);
-	    Environment.resetTimes();
-	}
+	Environment.setIterationNumber(2);
+	Environment.resetTimes();
+	Environment.stopTest();
     }
 
 }

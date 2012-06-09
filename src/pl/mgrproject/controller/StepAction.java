@@ -23,7 +23,6 @@ public class StepAction implements ActionListener {
     private JTextField startVertex;
     private JTextField stopVertex;
     private JCheckBox drawGraph;
-    private int step = 2;
 
     public StepAction(JList generators, JList algorithms, JTextField start, JTextField stop, JCheckBox drawGraph) {
 	this.generators = generators;
@@ -50,6 +49,7 @@ public class StepAction implements ActionListener {
 	    return;
 	}
 	
+	int step = Environment.getIterationNumber();
 	generator.generate(step);
 	Graph<?> g = generator.getGraph();
 	algorithm.setGraph(g);
@@ -103,7 +103,7 @@ public class StepAction implements ActionListener {
 	    Environment.drawGraph(g);
 	}
 	Environment.drawChart();
-	++step;
+	Environment.setIterationNumber(++step);
     }
 
 }

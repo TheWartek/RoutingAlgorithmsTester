@@ -34,7 +34,11 @@ public class StartAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-	Environment.resetTimes();
+	if (!Environment.testIsPaused()) {
+	    Environment.resetTimes();
+	} else {
+	    Environment.resumeTest();
+	}
 	Environment.startTest();
 	String genStr = (String) generators.getSelectedValue();
 	String algStr = (String) algorithms.getSelectedValue();
@@ -56,13 +60,18 @@ public class StartAction implements ActionListener {
 	    @Override
 	    public void run() {
 		int iter = 0;
+		int itStart = Environment.getIterationNumber();
 		try {
 		    iter = Integer.parseInt(it.getText());
 		} catch(NumberFormatException e) {
 		    iter = -1;
 		}
-		for (int i = 2; iter <= 0 ? true : i < iter; ++i) {
+		for (int i = itStart; iter <= 0 ? true : (i < iter); ++i) {
 		    if (Environment.testIsStopped()) {
+			break;
+		    }
+		    if (Environment.testIsPaused()) {
+			Environment.setIterationNumber(i);
 			break;
 		    }
 		    generator.generate(i);

@@ -20,6 +20,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
 import pl.mgrproject.api.Environment;
+import pl.mgrproject.controller.PauseAction;
+import pl.mgrproject.controller.ResetAction;
 import pl.mgrproject.controller.StartAction;
 import pl.mgrproject.controller.StepAction;
 import pl.mgrproject.controller.StopAction;
@@ -110,6 +112,18 @@ public class RoutingAlgorithmsTester extends JFrame {
 	JButton step = new JButton("Krok");
 	step.addActionListener(new StepAction(generatorsList, routingAlgorithmsList, startVertex, stopVertex, drawGraph));
 	leftBar.add(step);
+	//***//
+	
+	//pause button//
+	JButton pause = new JButton("Pauza");
+	pause.addActionListener(new PauseAction());
+	leftBar.add(pause);
+	//***//
+	
+	//reset button//
+	JButton reset = new JButton("Reset");
+	reset.addActionListener(new ResetAction());
+	leftBar.add(reset);
 	//***//
 	
 	return leftBar;

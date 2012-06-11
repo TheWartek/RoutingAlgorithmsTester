@@ -69,15 +69,15 @@ public class StartAction implements ActionListener {
 		} catch(NumberFormatException e) {
 		    iter = -1;
 		}
-		for (int i = itStart; iter <= 0 ? true : (i < iter); ++i) {
+		for (Environment.i = itStart; iter <= 0 ? true : (Environment.i < iter); ++Environment.i) {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }
 		    if (Environment.testIsPaused()) {
-			Environment.setIterationNumber(i);
+			Environment.setIterationNumber(Environment.i);
 			break;
 		    }
-		    generator.generate(i);
+		    generator.generate(Environment.i);
 		    Graph<?> g = generator.getGraph();
 		    algorithm.setGraph(g);
 
@@ -106,7 +106,7 @@ public class StartAction implements ActionListener {
 			    Environment.setPath(path);
 			    test = true;
 			} catch (Exception e) {
-			    generator.generate(i);
+			    generator.generate(Environment.i);
 			    g = generator.getGraph();
 			    algorithm.setGraph(g);
 			}

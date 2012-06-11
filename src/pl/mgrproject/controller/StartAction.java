@@ -66,18 +66,18 @@ public class StartAction implements ActionListener {
 		int itStart = Environment.getIterationNumber();
 		try {
 		    iter = Integer.parseInt(it.getText());
-		} catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 		    iter = -1;
 		}
-		for (Environment.i = itStart; iter <= 0 ? true : (Environment.i < iter); ++Environment.i) {
+		for (int i = itStart; iter <= 0 ? true : (i < iter); ++i) {
 		    if (Environment.testIsStopped()) {
 			break;
 		    }
 		    if (Environment.testIsPaused()) {
-			Environment.setIterationNumber(Environment.i);
+			Environment.setIterationNumber(i);
 			break;
 		    }
-		    generator.generate(Environment.i);
+		    generator.generate(i);
 		    Graph<?> g = generator.getGraph();
 		    algorithm.setGraph(g);
 
@@ -99,23 +99,23 @@ public class StartAction implements ActionListener {
 		    boolean test = false;
 		    do {
 			try {
-			    startTime = System.currentTimeMillis();
+			    startTime = System.nanoTime();
 			    algorithm.run(start);
-			    stopTime = System.currentTimeMillis();
+			    stopTime = System.nanoTime();
 			    List<Point> path = algorithm.getPath(stop);
 			    Environment.setPath(path);
 			    test = true;
 			} catch (Exception e) {
-			    generator.generate(Environment.i);
+			    generator.generate(i);
 			    g = generator.getGraph();
 			    algorithm.setGraph(g);
 			}
 		    } while (!test);
 
-		    Environment.addTime(stopTime - startTime);
+		    Environment.addTime(stopTime / (1000 * 1000) - startTime / (1000 * 1000));
 		    if (drawGraph.isSelected()) {
-			    Environment.drawGraph(g);
-			}
+			Environment.drawGraph(g);
+		    }
 		    Environment.drawChart();
 		}
 	    }
